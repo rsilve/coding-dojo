@@ -8,11 +8,11 @@ class RomanNumberSpec extends Specification {
   "The 'I' RM" should {
 
     "be valid" in {
-      "I".isValidRomanNumber must beTrue
+      "I".romanValue must beSome
     }
 
     "equal 1" in {
-      "I".romanValue must beEqualTo(1)
+      "I".romanValue must beSome(1)
     }
 
   }
@@ -20,11 +20,11 @@ class RomanNumberSpec extends Specification {
   "The 'V' RM" should {
 
     "be valid" in {
-      "V".isValidRomanNumber must beTrue
+      "V".romanValue must beSome
     }
 
     "equal 5" in {
-      "V".romanValue must beEqualTo(5)
+      "V".romanValue must beSome(5)
     }
 
   }
@@ -32,11 +32,11 @@ class RomanNumberSpec extends Specification {
   "The 'X' RM" should {
 
     "be valid" in {
-      "X".isValidRomanNumber must beTrue
+      "X".romanValue must beSome
     }
 
     "equal 10" in {
-      "X".romanValue must beEqualTo(10)
+      "X".romanValue must beSome(10)
     }
 
   }
@@ -44,11 +44,11 @@ class RomanNumberSpec extends Specification {
   "The 'L' RM" should {
 
     "be valid" in {
-      "L".isValidRomanNumber must beTrue
+      "L".romanValue must beSome
     }
 
     "equal 50" in {
-      "L".romanValue must beEqualTo(50)
+      "L".romanValue must beSome(50)
     }
 
   }
@@ -56,11 +56,11 @@ class RomanNumberSpec extends Specification {
   "The 'C' RM" should {
 
     "be valid" in {
-      "C".isValidRomanNumber must beTrue
+      "C".romanValue must beSome
     }
 
     "equal 100" in {
-      "C".romanValue must beEqualTo(100)
+      "C".romanValue must beSome(100)
     }
 
   }
@@ -68,11 +68,11 @@ class RomanNumberSpec extends Specification {
   "The 'D' RM" should {
 
     "be valid" in {
-      "D".isValidRomanNumber must beTrue
+      "D".romanValue must beSome
     }
 
     "equal 500" in {
-      "D".romanValue must beEqualTo(500)
+      "D".romanValue must beSome(500)
     }
 
   }
@@ -80,11 +80,11 @@ class RomanNumberSpec extends Specification {
   "The 'M' RM" should {
 
     "be valid" in {
-      "M".isValidRomanNumber must beTrue
+      "M".romanValue must beSome
     }
 
     "equal 1000" in {
-      "M".romanValue must beEqualTo(1000)
+      "M".romanValue must beSome(1000)
     }
 
   }
@@ -92,50 +92,57 @@ class RomanNumberSpec extends Specification {
   "The 'E' RM" should {
 
     "not be valid" in {
-      "E".isValidRomanNumber must beFalse
+      "E".romanValue must beNone
+    }
+  }
+  "The 'VEI' RM" should {
+
+    "not be valid" in {
+      "VEI".romanValue must beNone
     }
   }
 
   "The 'II' RM" should {
 
     "be valid" in {
-      "II".isValidRomanNumber must beTrue
+      "II".romanValue must beSome
     }
 
     "equal 2" in {
-      "II".romanValue must beEqualTo(2)
+      "II".romanValue must beSome(2)
     }
   }
   "The 'III' RM" should {
 
     "be valid" in {
-      "III".isValidRomanNumber must beTrue
+      "III".romanValue must beSome
     }
 
     "equal 3" in {
-      "III".romanValue must beEqualTo(3)
+      "III".romanValue must beSome(3)
     }
   }
 
   "The 'IV' RM" should {
 
     "be valid" in {
-      "IV".isValidRomanNumber must beTrue
+      "IV".romanValue must beSome
     }
 
     "equal 4" in {
-      "IV".romanValue must beEqualTo(4)
+      "IV".romanValue must beSome(4)
     }
   }
   "The 'VI' RM" should {
 
     "be valid" in {
-      "VI".isValidRomanNumber must beTrue
+      "VI".romanValue must beSome
     }
 
     "equal 6" in {
-      "VI".romanValue must beEqualTo(6)
+      "VI".romanValue must beSome(6)
     }
   }
+
 
 }
