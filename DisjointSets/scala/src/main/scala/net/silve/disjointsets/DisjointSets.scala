@@ -37,7 +37,7 @@ object DisjointSetsImplicits {
           val diff =  s.diff(set)
           val inter =  s.intersect(set)
           val r = set.diff(diff ++ inter)
-          disjoint + r //GenSet(diff, inter, r).filterNot(_.isEmpty)
+          disjoint + r
 
 
         }
