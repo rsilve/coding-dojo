@@ -1,5 +1,7 @@
 package net.silve.disjointsets
 
+import scala.collection.GenSet
+
 
 /*
  * On definit une conversion implicit sur les String
@@ -13,61 +15,39 @@ package net.silve.disjointsets
  * import net.silve.disjointsets.RomanNumberImplicits._
  */
 
-object RomanNumberImplicits {
+object DisjointSetsImplicits {
 
   // Conversion implicite
-  implicit def String2RomanNumber(value : String) = RomanNumber(value)
+  implicit def Set2Set[T](value : GenSet[GenSet[T]]) = DisjointSets(value)
 
-  // helper pour pouvoir comparer deux "unite romaine"
-  // et calculer l'increment d'une unite sur l'autre
-  case class RomanToken(c: Char, score: Option[Int]) {
-
-    val v: Option[Int] = value(c);
-
-    def value(c: Char) = c match {
-      case 'I'  => Some(1)
-      case 'V'  => Some(5)
-      case 'X'  => Some(10)
-      case 'L'  => Some(50)
-      case 'C'  => Some(100)
-      case 'D'  => Some(500)
-      case 'M'  => Some(1000)
-      case _    => None
-    }
-
-    // get the new value if the current char is ok and no error before
-    // (ie score is not empty)
-    def addTo(p: Option[Char]): Option[Int] = {
-      (v, score) match {
-        case (Some(k), Some(s)) => Some( incr(p, k, s) )
-        case _                  => None
-      }
-    }
-
-    // increment or decrement the current value of the roman number
-    // Assume that p is allright (it must have been parse on previous step)
-    def incr(p: Option[Char],k: Int, s: Int) = p map { c =>
-      if (k < value(c).get) s - k else  s + k
-    } getOrElse(s + k)
 
 
   }
 
   // L'object sous-jacent a la conversion.
-  case class RomanNumber(desc: String) {
+  case class DisjointSets[T](value : GenSet[GenSet[T]]) {
 
-    // a la creation de l'instance on parse la chaine de caratere
-    // pour obtenir : la valeur, et la validite
-    val parse = {
-      desc.reverseIterator.foldLeft[(Option[Int], Option[Char])](Some(0), None){ (prev, curr) =>
-        ( RomanToken(curr, prev._1).addTo(prev._2), Some(curr))
-      }
+    val z : GenSet[GenSet[T]]= {
+      value.headOption.map { head =>
+        value.tail.foldLeft(GenSet(head)) { (disjoint, set) =>
+
+          val s = disjoint.flatten
+
+          val diff =  s.diff(set)
+          val inter =  s.intersect(set)
+          val r = set.diff(diff ++ inter)
+          disjoint + r //GenSet(diff, inter, r).filterNot(_.isEmpty)
+
+
+        }
+      }.getOrElse(value)
+
     }
 
-    // valeur
-    def romanValue = parse._1
+    val zz = z
 
-  }
+    // valeur
+    def disjointSets = z
 
 
 }
