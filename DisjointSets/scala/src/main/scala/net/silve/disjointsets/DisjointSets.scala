@@ -4,15 +4,13 @@ import scala.collection.GenSet
 
 
 /*
- * On definit une conversion implicit sur les String
- * afin de pouvoir manipuler les nombre romain comme des chaine de caracteres.
+ * On definit une conversion implicite sur GenSet
+ * afin de pouvoir directement calculer les ensemble disjoint sur l'ensemble
  *
- * On pourra utiliser "CXV".romanValue
- * Cette methode renvoi un Option[Int]
- * (None signifiant que ce n'est pas un nombre romain valide)
+ * On pourra utiliser GenSet(GenSet(0), GenSet(1)).disjointSets
  *
  * Il suffit de rajouter l'import
- * import net.silve.disjointsets.RomanNumberImplicits._
+ * import net.silve.disjointsets.DisjointSetsImplicits._
  */
 
 object DisjointSetsImplicits {
@@ -27,7 +25,10 @@ object DisjointSetsImplicits {
   // L'object sous-jacent a la conversion.
   case class DisjointSets[T](value : GenSet[GenSet[T]]) {
 
-    val z : GenSet[GenSet[T]]= {
+
+
+    // valeur
+    def disjointSets : GenSet[GenSet[T]]= {
       value.headOption.map { head =>
         value.tail.foldLeft(GenSet(head)) { (disjoint, set) =>
 
@@ -43,11 +44,6 @@ object DisjointSetsImplicits {
       }.getOrElse(value)
 
     }
-
-    val zz = z
-
-    // valeur
-    def disjointSets = z
 
 
 }
