@@ -13,7 +13,11 @@ object Hi {
       "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX", "XC",
       "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C")
 
-    num.foreach(v => println( v + "\t= " + v.romanValue))
+    num.foreach { v =>
+      val r = v.romanValue
+      val i = r.map(_.romanString)
+      System.out.printf("%-10s -> %-10s -> %-10s\n", v, r, i)
+    }
 
   }
 }
