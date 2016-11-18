@@ -8,7 +8,7 @@ object Anagram {
     case Nil => false
     case a :: Nil => false
     case a :: b :: Nil => a == b
-    case a :: b :: tail => a == b && apply(tail :+ b)
+    case a :: b :: tail => a == b && apply(b :: tail)
   }
 
   private def prepare = { x: String =>
